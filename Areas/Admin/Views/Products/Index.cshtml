@@ -1,0 +1,97 @@
+﻿@model IEnumerable<HaluwinShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+        font-size: 15px;
+        text-align: center;
+    }
+</style>
+<main>
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">Quản lý sản phẩm</h3>
+    @*Thanh tìm kiếm*@
+    <div class="row justify-content-center">
+        <div>
+            <form action="/Admin/Products" method="get" class="d-flex justify-content-center">
+                <input type="text" name="name" placeholder="Tên sản phẩm" size="20" />
+                <input type="submit" value="Tìm" class="btn btn-info rounded-3" style="margin: 5px" />
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-success m-3 font-monospace" style="height: 30px; width: 20%" href="@Url.Action("Create", "Products")">
+            <div style="text-decoration:none; color: ghostwhite; align-items:center">
+                + Tạo
+            </div>
+        </a>
+    </div>
+
+    <table style="width:100%;border: 1px solid white" class="table table-bordered">
+        <tr style="color: ghostwhite; text-align: center">
+
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NamePro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DecriptionPro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CATEGORY.NameCate)
+            </th>
+            <th style="width: 10%"> </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="color: ghostwhite">
+
+                <td style=" text-align: center; vertical-align: middle;">
+                    <img src="@Url.Content(item.ImagePro)" alt="Alternate Text" style="border-radius: 0; max-width: 100%; height: auto; width: 150px" />
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamePro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DecriptionPro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.CATEGORY.NameCate)
+                </td>
+                <td>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-light" style="text-decoration:none" href="/Admin/Products/Edit/@item.ProductID">
+                            Edit
+                        </a>
+                    </h6>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-info" style="text-decoration:none" href="/Admin/Products/Details/@item.ProductID">
+                            Detail
+                        </a>
+                    </h6>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-danger" style="text-decoration:none" href="/Admin/Products/Delete/@item.ProductID">
+                            Delete
+                        </a>
+                    </h6>
+                </td>
+            </tr>
+        }
+    </table>
+</main>
+
+
+
+

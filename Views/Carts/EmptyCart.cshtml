@@ -1,0 +1,124 @@
+﻿
+<style>
+    body {
+        background-color: #1a1a1a;
+        color: #ff6600;
+        font-family: 'Creepster', cursive;
+    }
+
+    h2, label, a {
+        color: #ff6600;
+        text-shadow: 2px 2px 4px #333333; /* Đổ bóng chữ */
+    }
+
+    table {
+        border: 2px solid #ff6600;
+        border-collapse: separate;
+        border-spacing: 5px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ff6600;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #1a1a1a;
+        color: #ff6600;
+    }
+
+    tbody tr:hover {
+        background-color: #333333;
+        transition: background-color 0.3s ease; /* Hiệu ứng màu nền khi di chuột qua */
+    }
+
+    input[type="number"], input[type="text"] {
+        background-color: #333333;
+        color: #ff6600;
+        border: 1px solid #ff6600;
+        padding: 8px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    input[type="submit"], .btn {
+        background-color: #ff6600;
+        color: #1a1a1a;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 5px;
+        transition: background-color 0.3s ease; /* Hiệu ứng màu nền khi di chuột qua */
+    }
+
+        input[type="submit"]:hover, .btn:hover {
+            background-color: #cc3300;
+        }
+
+        /* Hiệu ứng đảo chiều chuyển động cho nút "Update" */
+        input[type="submit"][value="Update"] {
+            transform: rotate(0deg);
+            transition: transform 0.5s ease-in-out;
+        }
+
+            input[type="submit"][value="Update"]:hover {
+                transform: rotate(360deg);
+            }
+
+        /* Hiệu ứng đảo chiều chuyển động cho nút "CheckOut" */
+        input[type="submit"][value="CheckOut"]:hover {
+            transform: scale(1.2);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        input[type="submit"][value="CheckOut"]:hover {
+            transform: rotate(-360deg);
+        }
+
+    /* Hiệu ứng lộn ngược hình ảnh khi di chuột qua */
+    img {
+        transition: transform 0.5s ease;
+    }
+
+        img:hover {
+            transform: rotateY(180deg);
+        }
+</style>
+@section Header {
+
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h3 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h3>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<main>
+    <a class="btn btn-outline-dark" href="@Url.Action("Index" , "Product")">Tiếp tục mua hàng</a>
+    <table class="table">
+        <thead>
+           
+        </thead>
+        <tbody style="color: ghostwhite">
+            <tr>
+                <td colspan="12">
+                    Chưa có sản phẩm nào ....
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+
+

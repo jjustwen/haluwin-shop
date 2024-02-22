@@ -1,0 +1,73 @@
+﻿@model IEnumerable<HaluwinShop.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+        font-size: 15px;
+        text-align: center;
+    }
+</style>
+<main>
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">Quản lý đơn hàng</h3>
+    @*Thanh tìm kiếm*@
+    <div class="row justify-content-center">
+        <div>
+            <form action="/Admin/Products" method="get" class="d-flex justify-content-center">
+                <input type="text" name="name" placeholder="Tên sản phẩm" size="20" />
+                <input type="submit" value="Tìm" class="btn btn-info rounded-3" style="margin: 5px" />
+            </form>
+        </div>
+    </div>
+    
+
+    <table style="width:100%;border: 1px solid white" class="table table-bordered">
+        <tr style="color: ghostwhite; text-align: center">
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressDeliverry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.NameCus)
+            </th>
+            <th style="width: 10%"> </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="color: ghostwhite">
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressDeliverry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.NameCus)
+                </td>
+              
+                <td>             
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-info" style="text-decoration:none" href="/Admin/OrderPro/Details/@item.ID">
+                            Detail
+                        </a>
+                    </h6>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-danger" style="text-decoration:none" href="/Admin/OrderPro/Delete/@item.ID">
+                            Delete
+                        </a>
+                    </h6>
+                </td>
+            </tr>
+        }
+    </table>
+</main>
+

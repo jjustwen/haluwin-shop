@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+
+
+@section Header {
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h3 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h3>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ</title>
+    <style>
+
+
+        .h2ct {
+            color: #ff9900;
+            text-align: center;
+        }
+
+        .containerct {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .formct {
+            flex: 1;
+            background: #2c2c2c;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.8);
+            border-radius: 15px;
+            margin: 0 20px 20px 0;
+            width: 100%;
+            transition: box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+        }
+
+            .formct:hover {
+                box-shadow: 0 0 30px rgba(255, 153, 0, 1);
+                background: #3c3c3c;
+            }
+
+        .labelct {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff9900;
+            font-size: 18px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ff9900;
+            border-radius: 15px;
+            box-sizing: border-box;
+            background-color: #2c2c2c;
+            color: #ff9900;
+            transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+            input:focus,
+            textarea:focus {
+                border-color: #ff4500;
+                background-color: #3c3c3c;
+                color: #fff;
+            }
+
+        .buttonct {
+            background-color: #ff4500;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .buttonct:hover {
+                background-color: #d84315;
+            }
+    </style>
+</head>
+
+<body>
+    <h2 class="h2ct">Liên Hệ Với Chúng Tôi</h2>
+
+    <div class="containerct">
+        <!-- Form nhập thông tin liên hệ -->
+        <form class="formct" action="#" method="post" id="contactForm">
+            <label for="name" class="labelct">Tên của bạn:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email" class="labelct">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message" class="labelct">Nội dung bạn muốn gửi là gì:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button class="buttonct" type="submit">Gửi nè</button>
+
+        </form>
+        <img style="height: auto; /* Chiều cao mới của ảnh */ width: 100%; /* Tự động tính toán chiều rộng dựa trên chiều cao */ border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px;" src="~/Content/assets/img/anhmap.jpg" />
+    </div>
+</body>
+</html>

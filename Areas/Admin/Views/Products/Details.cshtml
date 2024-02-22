@@ -1,0 +1,57 @@
+﻿@model HaluwinShop.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chi tiết sản phẩm</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DecriptionPro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DecriptionPro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro)" alt="Alternate Text" style="border-radius: 0; max-width: 100%; height: auto; width: 150px" />
+        </dd>
+
+
+    </dl>
+</div>
+<h6>
+    <a class="text-uppercase btn btn-outline-success font-monospace" style="text-decoration:none" href="/Admin/Products/Edit/@Model.ProductID">
+        Sửa
+    </a>
+</h6>
+<div class="btn btn-outline-secondary">
+    <a href="@Url.Action("Index","Products")" style="text-decoration: none; color: grey">
+        <i class="font-monospace">Danh sách sản phẩm</i>
+    </a>
+</div>

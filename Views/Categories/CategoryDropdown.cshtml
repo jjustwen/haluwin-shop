@@ -1,0 +1,15 @@
+﻿@model IEnumerable<HaluwinShop.Models.Category>
+
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+        Danh mục
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+        @foreach (var category in Model)
+        {
+            <li>
+                <a class="dropdown-item" href="@Url.Action("ShowProByCate", new {idCate = category.Id, controller="Product"})">@category.NameCate</a>
+            </li>
+        }
+    </ul>
+</div>

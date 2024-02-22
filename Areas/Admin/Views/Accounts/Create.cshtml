@@ -1,0 +1,73 @@
+﻿@model HaluwinShop.Models.Account
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">Tạo tài khoản mới</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal text-white">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NameUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameUser, new { htmlAttributes = new { @class = "form-control", style = "color: ghostwhite;" } })
+                    @Html.ValidationMessageFor(model => model.NameUser, "", new { @class = "text-danger" })
+                    @if (ViewBag.ErroInfo != null)
+                    {
+                        <span class="text-danger">@ViewBag.ErrorInfo</span>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-white">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", style = "color: ghostwhite;" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RoleUser, ViewBag.RoleUser as SelectList, "-- Chọn quyền --", new { @class = "form-control", style = "color: ghostwhite" })
+                    @Html.ValidationMessageFor(model => model.RoleUser, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PasswordUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-white">
+                    @Html.PasswordFor(model => model.PasswordUser, new { htmlAttributes = new { @class = "form-control", style = "color: ghostwhite;" } })
+                    @Html.ValidationMessageFor(model => model.PasswordUser, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPass, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 text-white">
+                    @Html.PasswordFor(model => model.ConfirmPass, new { htmlAttributes = new { @class = "form-control", style = "color: ghostwhite;" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPass, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tạo" class="text-uppercase btn btn-outline-success font-monospace" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="btn btn-outline-secondary">
+        <a href="@Url.Action("Index","Accounts")" style="text-decoration: none; color: grey">
+            <i class="font-monospace">Danh sách tài khoản</i>
+        </a>
+    </div>
+</main>
+
+

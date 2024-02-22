@@ -1,0 +1,36 @@
+﻿@using HaluwinShop.Models
+@model List<HaluwinShop.Models.Category>
+<style>
+    #div-u {
+        padding-top: 30px;
+        margin-top: 50px;
+        text-decoration: none;
+    }
+
+    .div-cate {
+        height: 30px;
+        width: 100%;
+    }
+
+    a {
+        color: #a94442;
+        text-decoration: none;
+        font-size: x-large;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+</style>
+<ul style="list-style-type:none" id="div-u">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="div-cate">
+                @Html.ActionLink(item.NameCate, "Index", "Product", new { category = item.IDCate.Trim() }, "")
+
+            </li>
+
+        }
+    }
+</ul>

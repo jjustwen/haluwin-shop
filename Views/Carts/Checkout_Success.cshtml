@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đặt hàng thành công</title>
+</head>
+<body style="text-align:center;color:red">
+
+    <h2>Đặt hàng thành công, cảm ơn bạn đã đặt hàng</h2>
+    <h4>Đơn hàng của bạn sẽ được giao trong vòng 5-7 ngày.</h4>
+    <a href="@Url.Action("Index","Product")" class="btn btn-outline-danger"> Tiếp tục mua hàng... </a>
+</body>
+</html>
+@section Header {
+
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h1>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}

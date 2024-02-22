@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+@section Header {
+
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h3 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h3>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <style>
+        .h2au {
+            text-align: center;
+            color: #ff9900; /* Màu chữ mới */
+        }
+
+        .container-about {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #2c2c2c; /* Màu nền mới */
+            padding: 30px; /* Tăng khoảng cách giữa các phần nội dung */
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.5); /* Đổ bóng mới */
+            border-radius: 15px;
+        }
+
+        .profile-image {
+            max-width: 90%; /* Tăng kích thước ảnh */
+            height: 80%;
+            border-radius: 5%;
+            margin: 0 auto 20px; /* Canh giữa ảnh và thêm khoảng cách dưới */
+            display: block; /* Chắc chắn ảnh sẽ hiển thị giữa */
+        }
+
+        .about-textct {
+            color: #fff; /* Màu chữ mới */
+            line-height: 1.8;
+            font-size: 18px; /* Tăng cỡ chữ */
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+            .about-textct strong {
+                color: #ff4500; /* Màu chữ mới cho các từ in đậm */
+            }
+
+            .about-textct ul {
+                list-style-type: square; /* Đổi kiểu dấu chấm */
+                margin-left: 30px; /* Tăng khoảng cách từ lề trái */
+            }
+
+            .about-textct li {
+                margin-bottom: 10px; /* Tăng khoảng cách giữa các mục trong danh sách */
+            }
+
+            .about-textct p:last-child {
+                margin-bottom: 0; /* Loại bỏ khoảng cách dưới cùng của đoạn văn cuối cùng */
+            }
+    </style>
+</head>
+<body>
+    <div class="container-about">
+        <h2 class="h2au">CHÚNG TÔI</h2>
+        <br />
+        <img class="profile-image" src="~/Content/images/aboutus1.jpg" alt="Profile Image" />
+        <p class="about-textct">
+            Chào mừng bạn đến với cửa hàng Halloween độc đáo của chúng tôi, sáng tạo bởi :<br /> <b>Hoàng Thịnh</b>, <b>Xuân Dương</b> và <b>Quốc Anh</b> ! <br />Chúng tôi mang đến sự đa dạng với sản phẩm chất lượng và sáng tạo, từ trang trí đến trang phục. Dịch vụ tận tâm của chúng tôi cam kết mang lại trải nghiệm mua sắm Halloween thú vị. Hãy khám phá và tạo nên một Halloween đáng nhớ với chúng tôi!
+        </p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@model HaluwinShop.Models.Account
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_FormLoginLayout.cshtml";
+}
+
+
+    <div class="wrap-login100 p-t-30 p-b-50">
+        <div class="login100-form-title p-b-41">
+            <img src="~/Content/assets/img/logo/HaluwinLogo.png" style="width: 250px;" />
+            <h4 class="text-uppercase" style="font-family: Ubuntu-Bold;margin:25px">Đăng ký</h4>
+        </div>
+        <form action="/Admin/Accounts/Register" method="post" class="login100-form validate-form p-b-33 p-t-5" style="background-color: rgba(0,0,0,0);">
+
+            <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập tên">
+                @*<input class="input100" type="text" name="NameUser" placeholder="TÀI KHOẢN" style="color:white">*@
+                @Html.TextBoxFor(model => model.NameUser, new { @class = "input100", style = "color:white", placeholder = "TÊN TÀI KHOẢN" })
+                @if (ViewBag.ErrorRegister != null)
+                {
+                    <span class="text-danger">@ViewBag.ErrorRegister</span>
+                }
+                <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập Email">
+                @Html.TextBoxFor(model => model.Email, new { @class = "input100", style = "color:white", placeholder = "EMAIL" })
+                @Html.ValidationMessageFor(model => model.Email)
+                <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập mật khẩu">
+                @Html.PasswordFor(model => model.PasswordUser, new { @class = "input100", style = "color:white", placeholder = "MẬT KHẨU" })
+                @Html.ValidationMessageFor(model => model.PasswordUser)
+                <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập lại mật khẩu">
+                @*<input class="input100" type="password" placeholder="NHẬP LẠI MẬT KHẨU" style="color:white">*@
+                @Html.PasswordFor(model => model.ConfirmPass, new { @class = "input100", style = "color:white", placeholder = "NHẬP LẠI MẬT KHẨU" })
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.ConfirmPass)</span>
+                <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+            </div>
+
+
+            <div class="container-login100-form-btn m-t-32">
+                <button class="login100-form-btn" style="margin-bottom:30px">
+                    Đăng ký
+                </button>
+            </div>
+            <h4 class="text-uppercase" style="font-family: Arial-Bold;color:red">
+                Đã có tài khoản ?
+                <a class="text-uppercase btn btn-outline-danger" style="font-family: Arial;color:ghostwhite;font-size:23px;" href=@Url.Action("Login","Accounts")>Đăng nhập</a>
+
+
+            </h4>
+            <br />
+            <a class="text-uppercase btn btn-outline-danger" style="font-family: Arial;color:ghostwhite;font-size:23px;" href=@Url.Action("Index","Home")>← Trở về trang chủ</a>
+        </form>
+
+    </div>

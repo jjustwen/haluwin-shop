@@ -1,0 +1,45 @@
+﻿@model HaluwinShop.Models.Account
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_FormLoginLayout.cshtml";
+}
+
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/Content/assets/img/banner/bg.png'); ">
+        <div class="wrap-login100 p-t-30 p-b-50">
+            <div class="login100-form-title p-b-41">
+                <img src="~/Content/assets/img/logo/HaluwinLogo.png" style="width: 250px;" />
+                <h4 class="text-uppercase" style="font-family: monospace;margin:25px">đăng nhập</h4>
+            </div>
+            <form action="/Accounts/Login" method="post" class="login100-form validate-form p-b-33 p-t-5" style="background-color: rgba(0,0,0,0);">
+
+                <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập tên">
+                    @Html.TextBoxFor(model => model.NameUser, new { @class = "input100", style = "color:white", placeholder = "TÊN TÀI KHOẢN" })
+
+                    <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập mật khẩu">
+                    @Html.PasswordFor(model => model.PasswordUser, new { @class = "input100", style = "color:white", placeholder = "NHẬP MẬT KHẨU" })
+                    @Html.ValidationMessageFor(model => model.PasswordUser)
+                    <span class="text-danger">@ViewBag.ErrorInfo</span>
+                    <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                </div>
+
+                <div class="container-login100-form-btn m-t-32">
+                    <button class="login100-form-btn" style="margin-bottom:30px">
+                        login
+                    </button>
+                </div>
+                <h4 class="text-uppercase" style="font-family: Arial-Bold;color:red">
+                    Chưa có tài khoản ?
+                    <a class="text-uppercase btn btn-outline-danger" style="font-family: Arial;color:ghostwhite;font-size:23px;" href=@Url.Action("Register","Accoounts", new {are="Admin"})>Đăng ký</a>
+                </h4>
+                <br />
+
+                <a class="text-uppercase btn btn-outline-danger" style="font-family: Arial;color:ghostwhite;font-size:23px;" href=@Url.Action("Index","Home")>← Trở về trang chủ</a>
+            </form>
+        </div>
+    </div>
+</div>

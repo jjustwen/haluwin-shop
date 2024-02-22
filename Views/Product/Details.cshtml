@@ -1,0 +1,104 @@
+﻿
+@model HaluwinShop.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+
+@section Header {
+
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h1>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<h2 style="text-align:center; margin-bottom:30px; color: #ff8c00; font-size: 24px;">Chi tiết sản phẩm: @Html.DisplayFor(model => model.NamePro)</h2>
+
+<style>
+    body {
+        background-color: #1c1c1c; /* Màu đen đậm cho nền */
+        color: #ff8c00; /* Màu cam cho văn bản */
+    }
+
+    h2, dt {
+        color: #ff8c00; /* Màu cam cho tiêu đề và nhãn */
+    }
+
+    .product-details {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+        background-color: #2f2f2f; /* Màu nền cho chi tiết sản phẩm */
+        padding: 20px;
+        border-radius: 10px; /* Bo tròn góc */
+        box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); /* Hiệu ứng bóng đổ */
+    }
+
+        .product-details img {
+            max-width: 300px; /* Điều chỉnh chiều rộng tối đa của hình ảnh */
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-details dl {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .product-details dt {
+            font-weight: bold;
+        }
+
+    p a {
+        color: #ff8c00; /* Màu cam cho liên kết */
+    }
+
+    .dd1 {
+        font-family: Arial; /* Thay "Tên Font" bằng tên font bạn muốn sử dụng */
+        font-size: 50px; /* Điều chỉnh kích thước font theo ý muốn */
+        font-weight: bold; /* Tăng độ đậm của chữ nếu cần thiết */
+        color: orange; /* Đổi màu chữ theo mã màu hoặc tên màu */
+        /*Thêm các thuộc tính CSS khác nếu cần*/
+    }
+
+    /* Thêm các kiểu CSS tùy chọn khác tùy thuộc vào yêu cầu cụ thể của bạn */
+</style>
+
+<div class="product-details">
+    <img src="@Url.Content(Model.ImagePro)" alt="San pham" />
+
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm
+        </dt>
+        <dd class="dd1">
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            Mô tả sản phẩm
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DecriptionPro)
+        </dd>
+        <dt>
+            Giá
+        </dt>
+        <dd style="color:red">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    <a class="btn btn-outline-danger" style="text-decoration: none" href="/Home/Index">Về trang chủ</a>

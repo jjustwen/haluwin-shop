@@ -1,0 +1,342 @@
+﻿@model IEnumerable<HaluwinShop.Models.Product>
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/trochoitroicho.js"></script>
+<style>
+
+    main {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+    }
+
+
+
+    /* Định dạng các khối sản phẩm */
+    .card-pro {
+        background: rgba(255, 0, 0, 0.3); /* Màu đỏ nhẹ với độ trong suốt là 0.3 */
+        border: 1px solid #ddd; /* Viền xung quanh khối sản phẩm */
+        border-radius: 10px; /* Bo tròn các góc */
+        padding: 15px;
+        margin-bottom: 20px; /* Khoảng cách giữa các khối sản phẩm */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động và bóng đổ */
+    }
+
+        .card-pro:hover {
+            transform: translateY(-5px); /* Di chuyển lên khi di chuột vào */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ khi di chuột vào */
+        }
+
+    /* Định dạng văn bản sản phẩm */
+    .halloween-text {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 16px; /* Kích thước chữ */
+        font-weight: bold; /* Độ đậm của chữ */
+        color: #ffcc00; /* Màu chữ (ví dụ: màu vàng) */
+    }
+
+    /* Định dạng giá sản phẩm */
+    .halloween-price {
+        text-align: center;
+        margin: 5px 0;
+        font-size: 18px; /* Kích thước chữ tăng lên (ví dụ: 18px) */
+        color: #ff9900; /* Màu chữ (ví dụ: màu cam) */
+    }
+
+    /* Định dạng nút mua hàng */
+    .btn-default {
+        display: block;
+        margin: 0 auto; /* Căn giữa nút trong khối sản phẩm */
+        background-color: black; /* Màu nền của nút */
+        color: #ffcc00; /* Màu chữ của nút (ví dụ: màu vàng) */
+        border: 1px solid; /* Viền xung quanh nút */
+        border-radius: 4px; /* Bo tròn các góc của nút */
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động khi di chuột */
+    }
+
+        .btn-default:hover {
+            background-color: darkred; /* Màu nền khi di chuột vào */
+            border-color: darkred; /* Màu viền khi di chuột vào */
+            color: #fff; /* Màu chữ khi di chuột vào */
+        }
+
+    .hTitle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .underline {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #e74c3c; /* Màu đỏ đậm */
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .hTitle:hover .underline {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    /* Danh mục sản phẩm */
+    .category-item {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Phần khuyến mãi hoặc quảng cáo */
+    .promotion-item {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .promotion-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .promotion-item img {
+        border-radius: 15%; /* Bo tròn góc hình ảnh */
+        transition: transform 0.5s ease-in-out, border-color 0.5s ease-in-out; /* Hiệu ứng chuyển động và thay đổi màu khung */
+        border: 3px solid transparent; /* Đặt màu khung ban đầu là trong suốt */
+    }
+
+        .promotion-item img:hover {
+            transform: scale(1.05); /* Hiệu ứng khi di chuột vào làm hình ảnh phóng to một chút */
+            border-color: #e74c3c; /* Màu khung khi di chuột vào */
+        }
+
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    /* Thông báo đặc biệt */
+    .special-notification {
+        position: relative;
+        background-image: url("@Url.Content("~/Content/assets/img/banner/webbanner.jfif")");
+        background-size: cover;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .notification-text {
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .notification-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: rgba(231, 76, 60, 0.8); /* Màu đỏ với độ trong suốt 0.8 */
+        color: white;
+        font-size: 18px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        .notification-button:hover {
+            background-color: rgba(192, 57, 43, 0.8); /* Màu đỏ đậm khi di chuột vào */
+            transform: scale(1.1); /* Hiệu ứng phóng to khi di chuột vào */
+            opacity: 1; /* Không trong suốt khi di chuột vào */
+        }
+    #game-container {
+        text-align: center;
+        color: rgba(255, 204, 0, 0.8); /* Màu chữ và có độ trong suốt (ví dụ: màu vàng) */
+        background-color: rgba(51, 51, 51, 0.8); /* Màu nền tối và có độ trong suốt (ví dụ: màu đen đậm) */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #instruction {
+        color: rgba(255, 204, 0, 0.8); /* Màu chữ và có độ trong suốt (ví dụ: màu vàng) */
+    }
+
+    #user-input {
+        color: rgba(255, 204, 0, 0.8); /* Màu chữ trên nền tối và có độ trong suốt */
+        background-color: rgba(255, 204, 0, 0.2); /* Màu nền của input có độ trong suốt */
+        padding: 5px;
+        border: 1px solid rgba(255, 204, 0, 0.8); /* Viền của input có độ trong suốt */
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động khi di chuột */
+        /* Chỉnh màu và độ trong suốt khi input được chọn */
+        &:focus
+
+    {
+        color: rgba(51, 51, 51, 0.8); /* Màu chữ trên nền tối và có độ trong suốt khi input được chọn */
+        background-color: rgba(255, 204, 0, 0.4); /* Màu nền của input có độ trong suốt khi input được chọn */
+        border: 1px solid rgba(255, 204, 0, 0.4); /* Viền của input có độ trong suốt khi input được chọn */
+    }
+
+    }
+
+    button {
+        color: rgba(255, 204, 0, 0.8); /* Màu chữ và có độ trong suốt (ví dụ: màu vàng) */
+        background-color: rgba(51, 51, 51, 0.8); /* Màu nền tối và có độ trong suốt */
+        padding: 8px 16px;
+        border: 1px solid rgba(255, 204, 0, 0.8); /* Viền của button có độ trong suốt */
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động khi di chuột */
+    }
+
+        button:hover {
+            background-color: rgba(255, 204, 0, 0.2); /* Màu nền có độ trong suốt khi di chuột vào */
+            color: rgba(51, 51, 51, 0.8); /* Màu chữ có độ trong suốt khi di chuột vào */
+        }
+</style>
+@section Header {
+    
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h3 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h3>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<main>
+    <!-- Carousel -->
+    <div class="container d-flex justify-content-center">
+        <h1 class="text-uppercase" style="color:darkorange">sự kiện nổi bật</h1>
+    </div>
+
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Content/assets/img/banner/eventbanner.png" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/assets/img/banner/horrorbanner.png" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/assets/img/banner/bannerghost.png" class="d-block w-100">
+            </div>
+        </div>
+
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <br />
+    <br />
+    <div class="row">
+        <!-- Hiển thị sản phẩm mới nhất ở đây -->
+    </div>
+
+    <!-- Danh mục sản phẩm -->
+    <div class="section-heading" style="margin-top:0">
+        <h2 class="hTitle text-uppercase" style="color:darkorange">
+            best seller
+            <span class="underline"></span>
+        </h2>
+    </div>
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="/Product/Details/@pro.ProductID">
+                    <div class="card-pro halloween-card">
+                        <img src="@Url.Content(pro.ImagePro)" class="card-img-top" style="display: block; width: 100%; height: 220px; object-fit: cover; border-radius: 10px;" />
+                        <div class="card-body">
+                            <p class="halloween-text font-monospace" style="color: ghostwhite">@Html.DisplayFor(model => pro.NamePro)</p>
+                            <p class="halloween-price font-monospace" style="font-weight: 900">@Html.DisplayFor(model => pro.Price) VNĐ</p>
+                            <a href="/Carts/AddToCart/@pro.ProductID" class="btn btn-default">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    <div id="game-container">
+        <h1>MINI GAME !!!</h1>
+        <h2 class="hTitle" style="color: darkorange;">
+            Đoán số để nhận được khuyến mãi
+            <span class="underline"></span>
+        </h2>
+        <p id="instruction">Chọn một số từ 1 đến 10:</p>
+        <input type="number" id="user-input" min="1" max="10" />
+        <button onclick="guessNumber()">Đoán</button>
+        <p id="result-message"></p>
+    </div>
+
+    <!-- Khuyến mãi hoặc quảng cáo -->
+    <div class="section-heading">
+        <h2 class="hTitle" style="color:darkorange">
+            KHUYẾN MÃI ĐẶC BIỆT
+            <span class="underline"></span>
+        </h2>
+    </div>
+    <br />
+    <div class="row">
+        <div class="promotion-item col-md-12">
+            <img src="~/Content/assets/img/banner/bannerghost.png" alt="Khuyến mãi đặc biệt" class="promotion-image" style="color:firebrick" />
+        </div>
+        <!-- Hiển thị thông tin khuyến mãi hoặc quảng cáo ở đây -->
+    </div>
+    <!-- Thông báo đặc biệt -->
+    <div class="special-notification" style="border-radius: 100px">
+        <div class="notification-text" style="color:darkgoldenrod; padding-top: 50px; color: darkgoldenrod">
+            Đừng bỏ lỡ cơ hội mua sắm với ưu đãi đặc biệt cho mùa Noel năm nay !
+        </div>
+        <a href="~/Product/Index" class="notification-button" style="color:orange">Mua Ngay</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Hiệu ứng tự chuyển động cho hình ảnh khuyến mãi đặc biệt
+            function autoSlide() {
+                $(".promotion-item img").animate({ opacity: 0.3 }, 500, function () {
+                    $(this).animate({ opacity: 1 }, 500, autoSlide);
+                });
+            }
+
+            autoSlide(); // Bắt đầu hiệu ứng tự chuyển động khi trang đã tải xong
+        });
+    </script>
+</main>
+
+
+

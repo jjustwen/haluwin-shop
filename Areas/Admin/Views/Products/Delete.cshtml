@@ -1,0 +1,64 @@
+﻿@model HaluwinShop.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>XÓA SẢN PHẨM</h2>
+
+<h3>Xóa sản phẩm này ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DecriptionPro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DecriptionPro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro)" alt="Alternate Text" style="border-radius: 0; max-width: 100%; height: auto; width: 150px" />
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions text-uppercase btn btn-outline-light">
+            <input type="submit" value="Xóa" class="btn btn-default" />
+        </div>
+    }
+    <br />
+    <div class="btn btn-outline-secondary">
+        <a href="@Url.Action("Index","Products")" style="text-decoration: none; color: grey">
+            <i class="font-monospace">Danh sách sản phẩm</i>
+        </a>
+    </div>
+</div>

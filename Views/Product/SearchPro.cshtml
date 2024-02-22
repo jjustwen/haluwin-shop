@@ -1,0 +1,320 @@
+﻿@model IEnumerable<HaluwinShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HaluwinLayout.cshtml";
+}
+
+<style>
+    .masthead {
+        background-image: url('~/Content/assets/img/banner/bgtutu.png');
+    }
+
+    #div-ds {
+        text-align: center;
+        color: orange;
+        height: 50px;
+        border-radius: 20px 20px 0 0;
+    }
+    /* Định dạng các khối sản phẩm */
+    .card-pro {
+        background-color: #fff; /* Màu nền của khối sản phẩm */
+        border: 1px solid #ddd; /* Viền xung quanh khối sản phẩm */
+        border-radius: 8px; /* Bo tròn các góc */
+        padding: 15px;
+        margin-bottom: 20px; /* Khoảng cách giữa các khối sản phẩm */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động và bóng đổ */
+    }
+
+        .card-pro:hover {
+            transform: translateY(-5px); /* Di chuyển lên khi di chuột vào */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ khi di chuột vào */
+        }
+
+    /* Định dạng hình ảnh sản phẩm */
+    .halloween-image {
+        display: block;
+        margin: 0 auto; /* Căn giữa hình ảnh trong khối sản phẩm */
+    }
+
+    /* Định dạng văn bản sản phẩm */
+    .halloween-text {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 16px; /* Kích thước chữ */
+        font-weight: bold; /* Độ đậm của chữ */
+        color: #333; /* Màu chữ */
+    }
+
+    /* Định dạng giá sản phẩm */
+    .halloween-price {
+        text-align: center;
+        margin: 5px 0;
+        font-size: 14px; /* Kích thước chữ */
+        color: #8b0000; /* Màu chữ halloween */
+    }
+
+    /* Định dạng nút mua hàng */
+    .btn-default {
+        display: block;
+        margin: 0 auto; /* Căn giữa nút trong khối sản phẩm */
+        background-color: black; /* Màu nền của nút */
+        color: orange; /* Màu chữ của nút */
+        border: 1px solid; /* Viền xung quanh nút */
+        border-radius: 4px; /* Bo tròn các góc của nút */
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động khi di chuột */
+    }
+
+        .btn-default:hover {
+            background-color: darkred; /* Màu nền khi di chuột vào */
+            border-color: darkred; /* Màu viền khi di chuột vào */
+            color: #fff; /* Màu chữ khi di chuột vào */
+        }
+
+    #div-ds {
+        text-align: center;
+        background-color: #8b0000; /* Màu máu của Halloween */
+        height: 50px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .container {
+        max-width: 1200px; /* Giả sử giá trị tối đa cho chiều rộng của trang web */
+        margin: 0 auto; /* Tự động căn giữa theo chiều ngang */
+    }
+
+    #div-ds {
+        text-align: center;
+        background-color: #8b0000; /* Màu máu của Halloween */
+        height: 50px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .MenuPage {
+        text-align: center;
+        margin-top: 20px;
+        transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động */
+    }
+
+        .MenuPage:hover {
+            transform: translateY(-5px); /* Di chuyển lên khi di chuột vào */
+            background-color: rgba(0,0,0,0); /* Màu nền khi di chuột vào */
+            color: #fff; /* Màu chữ khi di chuột vào */
+        }
+
+        .MenuPage a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+            .MenuPage a:hover {
+                background-color: #eee;
+            }
+
+            .MenuPage a.active {
+                background-color: #8b0000;
+                color: #fff;
+                border-color: #8b0000;
+            }
+    /* ... your existing styles ... */
+    /* Halloween-themed styles for halloween-card */
+    .halloween-card {
+        background-color: #1c1c1c; /* Dark background color */
+        border: 0.5px solid #ff4500; /* Orange border */
+        color: #ff4500; /* Orange text color */
+    }
+
+    /* Additional styles for other elements */
+    .halloween-text {
+        color: #ff4500; /* Orange text color */
+    }
+
+    .halloween-price {
+        color: #ff6347; /* Tomato color for price */
+    }
+
+    .btn-default {
+        background-color: #ff4500; /* Orange button background */
+        color: #1c1c1c; /* Dark text color for the button */
+        border-color: #ff4500; /* Orange border color for the button */
+    }
+
+        .btn-default:hover {
+            background-color: #d43f3a; /* Darker orange on hover */
+            border-color: #d43f3a; /* Darker orange border on hover */
+        }
+
+    .MenuPage2 {
+        text-align: center;
+        margin: 20px 0;
+        color: ghostwhite; /* Make the text brighter */
+    }
+
+        .MenuPage2 span {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s ease; /* Hiệu ứng chuyển động màu nền */
+        }
+
+            .MenuPage2 span:hover {
+                background-color: orangered; /* Màu nền khi di chuột vào */
+            }
+
+        .MenuPage2 a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+            .MenuPage2 a:hover {
+                background-color: #eee;
+            }
+
+            .MenuPage2 a.active {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+
+
+    .xt-ct-menu {
+        position: relative;
+        display: inline-block;
+    }
+
+    .xtlab-ctmenu-item {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .xtlab-ctmenu-item:hover, .xtlab-ctmenu-item:focus {
+            background-color: #9c3328;
+        }
+
+    .xtlab-ctmenu-sub {
+        display: none;
+        position: absolute;
+        background-color: #3e8e41;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+        .xtlab-ctmenu-sub a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .xtlab-ctmenu-sub a:hover {
+                background-color: orange;
+                border: none;
+            }
+</style>
+@section Header {
+
+    <header class="masthead" style="background-image: url('@ViewBag.BackgroundImage')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1 style="color: @ViewBag.TitleColor">@ViewBag.PageTitle</h1>
+                        <span class="subheading" style="color: @ViewBag.SubtitleColor">@ViewBag.PageSubtitle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+<main>
+    <div class="row">
+        <div class="container-fluid row">
+            <div class="col-md-1">
+                @{Html.RenderAction("CategoryDropdown", "Categories"); }
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <form action="/Products/Index" method="" class="d-flex justify-content-center">
+                        <input type="text" name="name" placeholder="Tên sản phẩm" size="20" />
+                        <input type="submit" value="Tìm" class="btn btn-danger rounded-3" style="margin: 5px" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+
+
+            @foreach (var pro in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <a href="/Product/Details/@pro.ProductID">
+                        <div class="card-pro halloween-card">
+                            <img src="@Url.Content(pro.ImagePro)" class="card-img-top img-thumbnail" style="display: block; width: 100%; height: 220px; object-fit: cover; border-radius: 10px;" />
+                            <div class="card-body">
+                                <p class="halloween-text font-monospace" style="color: ghostwhite">@Html.DisplayFor(model => pro.NamePro)</p>
+                                <p class="halloween-price font-monospace" style="font-weight: 900">@Html.DisplayFor(model => pro.Price)</p>
+                                <div>
+                                    <a href="/Carts/AddToCart/@pro.ProductID" class="btn btn-default">Thêm vào giỏ hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+<script>
+    jQuery.fn.extend({
+        setMenu: function () {
+            return this.each(function () {
+                var containermenu = $(this);
+
+                var itemmenu = containermenu.find('.xtlab-ctmenu-item');
+                itemmenu.click(function () {
+                    var submenuitem = containermenu.find('.xtlab-ctmenu-sub');
+                    submenuitem.slideToggle(500);
+
+                });
+
+                $(document).click(function (e) {
+                    if (!containermenu.is(e.target) &&
+                        containermenu.has(e.target).length === 0) {
+                        var isopened =
+                            containermenu.find('.xtlab-ctmenu-sub').css("display");
+
+                        if (isopened == 'block') {
+                            containermenu.find('.xtlab-ctmenu-sub').slideToggle(500);
+                        }
+                    }
+                });
+            });
+        },
+    });
+    $('.xt-ct-menu').setMenu();
+</script>

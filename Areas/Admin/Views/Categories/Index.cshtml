@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HaluwinShop.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
+<main>
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">Quản lý danh mục</h3>
+    @*Thanh tìm kiếm*@
+    <div class="row justify-content-center">
+        <div>
+            <form action="/Admin/Categories" method="get" class="d-flex justify-content-center">
+                <input type="text" name="name" placeholder="Tên mục" size="20" />
+                <input type="submit" value="Tìm" class="btn btn-info rounded-3" style="margin: 5px" />
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <a class="btn btn-outline-success m-3 font-monospace" style="height: 30px; width: 20%" href="@Url.Action("Create", "Categories")">
+            <div style="text-decoration:none; color: ghostwhite; align-items:center">
+                + Tạo
+            </div>
+        </a>
+    </div>
+
+
+    <table style="width:100%;border: 1px solid white" class="table table-bordered">
+        <tr style="color: ghostwhite">
+
+            <th>
+                @Html.DisplayNameFor(model => model.IDCate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameCate)
+            </th>
+            <th style="width: 10%"> </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="color: ghostwhite">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameCate)
+                </td>
+                <td>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-light" style="text-decoration:none" href="/Admin/Categories/Edit/@item.Id">
+                            Edit
+                        </a>
+                    </h6>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-info" style="text-decoration:none" href="/Admin/Categories/Details/@item.Id">
+                            Detail
+                        </a>
+                    </h6>
+                    <h6>
+                        <a class="text-uppercase btn btn-outline-danger" style="text-decoration:none" href="/Admin/Categories/Delete/@item.Id">
+                            Delete
+                        </a>
+                    </h6>
+                </td>
+            </tr>
+        }
+    </table>
+</main>

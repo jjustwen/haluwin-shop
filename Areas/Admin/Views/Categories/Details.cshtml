@@ -1,0 +1,83 @@
+﻿@model HaluwinShop.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">Thông tin danh mục</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.IDCate)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.IDCate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NameCate)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.NameCate)
+            </dd>
+        </dl>
+    </div>
+    <h6>
+        <a class="text-uppercase btn btn-outline-success font-monospace" style="text-decoration:none" href="/Admin/Categories/Edit/@Model.Id">
+            Sửa
+        </a>
+    </h6>
+
+    <div class="btn btn-outline-secondary">
+        <a href="@Url.Action("Index","Categories")" style="text-decoration: none; color: grey">
+            <i class="font-monospace">Danh sách các mục</i>
+        </a>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Details</h2>
+
+    <div>
+        <h4>Category</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NameCate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameCate)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDCate }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

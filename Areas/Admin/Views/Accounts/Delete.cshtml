@@ -1,0 +1,79 @@
+﻿@model HaluwinShop.Models.Account
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main>
+    <h3 class="text-uppercase" style="font-family:'Times New Roman', Times, serif">
+        Xóa tài khoản <b style="background-color: darkred; border-style:groove; padding: 3px">@Model.NameUser</b> ?
+    </h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NameUser)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.NameUser)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleUser)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.RoleUser)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PasswordUser)
+            </dt>
+
+            <dd class="container-fluid">
+                @Html.DisplayFor(model => model.PasswordUser)
+            </dd>
+        </dl>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions mb-5">
+                <input type="submit" value="Xóa" class="text-uppercase btn btn-outline-danger font-monospace" />
+            </div>
+        }
+
+        <div class="btn btn-outline-secondary">
+            <a href="@Url.Action("Index","Accounts")" style="text-decoration: none; color: grey">
+                <i class="font-monospace">Danh sách tài khoản</i>
+            </a>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
